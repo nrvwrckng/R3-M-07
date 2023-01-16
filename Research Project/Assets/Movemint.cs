@@ -8,6 +8,7 @@ public class Movemint : MonoBehaviour
     public Rigidbody2D mcrigidbody;
     public float jumpstrength = 5; 
     public float movementspeed = 2;
+    public float currentspeed = 0;
     // Start is called before the first frame update
     void Start()
     {
