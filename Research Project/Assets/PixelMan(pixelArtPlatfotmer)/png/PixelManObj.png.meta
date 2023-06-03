@@ -156,7 +156,7 @@ TextureImporter:
       213: -7848610554574188473
     second: PixelManObj_50
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -177,6 +177,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -215,6 +216,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -242,6 +244,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1336,6 +1350,58 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      PixelManObj_0: -3586708198476076297
+      PixelManObj_1: 82077441384057410
+      PixelManObj_10: 8170697188945988079
+      PixelManObj_11: -3240352688559142132
+      PixelManObj_12: -5262742311519950923
+      PixelManObj_13: 938734928786696016
+      PixelManObj_14: -2952084693531358077
+      PixelManObj_15: 7475578776108780853
+      PixelManObj_16: -8242372535854777962
+      PixelManObj_17: -1952329329358758382
+      PixelManObj_18: -1302685165124203441
+      PixelManObj_19: 7853970413435640478
+      PixelManObj_2: -5038578848765204967
+      PixelManObj_20: -2198275469605876070
+      PixelManObj_21: -6153635118755834211
+      PixelManObj_22: -7532069209084730463
+      PixelManObj_23: -1337542790435281536
+      PixelManObj_24: -7573349686372428890
+      PixelManObj_25: -2935580914985224112
+      PixelManObj_26: 1845946252504547152
+      PixelManObj_27: 8874314492661242570
+      PixelManObj_28: 4917867268922487441
+      PixelManObj_29: 5216474300761691592
+      PixelManObj_3: 7496887345225490400
+      PixelManObj_30: 8370865844328961108
+      PixelManObj_31: 3667024565336534290
+      PixelManObj_32: 7617290645338590628
+      PixelManObj_33: -992104397814454870
+      PixelManObj_34: -1719049996159220021
+      PixelManObj_35: 5760094269868184832
+      PixelManObj_36: 8996057620786988589
+      PixelManObj_37: 385870575582883163
+      PixelManObj_38: -8318584942068559666
+      PixelManObj_39: 8318248162187229273
+      PixelManObj_4: 3775122734760483725
+      PixelManObj_40: -6288805531594755330
+      PixelManObj_41: 9137558069560824747
+      PixelManObj_42: -1903465655208255145
+      PixelManObj_43: -5454582151466120553
+      PixelManObj_44: -5592501746707962804
+      PixelManObj_45: -6145961672225914665
+      PixelManObj_46: -3750453278070234996
+      PixelManObj_47: 7975268703411603137
+      PixelManObj_48: 1700069623147854036
+      PixelManObj_49: 6919811991557021729
+      PixelManObj_5: 6535318337828354074
+      PixelManObj_50: -7848610554574188473
+      PixelManObj_6: -8652149291078915463
+      PixelManObj_7: -8413131989642927271
+      PixelManObj_8: -2191344217458470452
+      PixelManObj_9: -5854288940868095782
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

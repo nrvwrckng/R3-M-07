@@ -132,7 +132,7 @@ TextureImporter:
       213: 2848974812764668183
     second: PixelManPlant_42
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -153,6 +153,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -191,6 +192,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -218,6 +220,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1144,6 +1158,50 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      PixelManPlant_0: -6068126033608327963
+      PixelManPlant_1: 913691775452753245
+      PixelManPlant_10: -6765715232388179196
+      PixelManPlant_11: -8975973956356495923
+      PixelManPlant_12: -1082684779293468256
+      PixelManPlant_13: 500784617099511700
+      PixelManPlant_14: -4161215812244555331
+      PixelManPlant_15: 3337967629743623409
+      PixelManPlant_16: -8746311484135543181
+      PixelManPlant_17: -2811360730352129836
+      PixelManPlant_18: -9045204983600204315
+      PixelManPlant_19: -6645595909770932833
+      PixelManPlant_2: -2187877002942285894
+      PixelManPlant_20: -211664485753296453
+      PixelManPlant_21: -8260689255658831972
+      PixelManPlant_22: 7120372777706973424
+      PixelManPlant_23: -3101880533124659244
+      PixelManPlant_24: -8652135654715475101
+      PixelManPlant_25: -6993329050599715841
+      PixelManPlant_26: -7058293506003887102
+      PixelManPlant_27: 5342742372284950489
+      PixelManPlant_28: 5183781268583324332
+      PixelManPlant_29: -5737983791572176824
+      PixelManPlant_3: -4590990934492174713
+      PixelManPlant_30: 3519653015712908137
+      PixelManPlant_31: -6721285459849997539
+      PixelManPlant_32: 9012330046251320549
+      PixelManPlant_33: -4820805249678921565
+      PixelManPlant_34: 7084072536134212945
+      PixelManPlant_35: -2996470251689363531
+      PixelManPlant_36: 2579077281136251943
+      PixelManPlant_37: -133682734008875730
+      PixelManPlant_38: -6026557584671076175
+      PixelManPlant_39: 7443453546713652621
+      PixelManPlant_4: 9098618572081944536
+      PixelManPlant_40: -5664607364697090514
+      PixelManPlant_41: -4530255125134747571
+      PixelManPlant_42: 2848974812764668183
+      PixelManPlant_5: -5527455870975712080
+      PixelManPlant_6: 2089553634264196741
+      PixelManPlant_7: 6971717120446459414
+      PixelManPlant_8: -7304312153268001723
+      PixelManPlant_9: -4376699400847677703
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
