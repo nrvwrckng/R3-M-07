@@ -246,7 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4.2
-  jumpForce: 5
+  groundJumpForce: 7
+  airJumpForce: 5
   deceleration: 10
 --- !u!70 &9940593
 CapsuleCollider2D:
@@ -1612,8 +1613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5263cc70c329914cb612cf84f67d98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.05
-  textComponent: {fileID: 0}
+  text: {fileID: 0}
+  delay: 0.1
 --- !u!1 &599720192
 GameObject:
   m_ObjectHideFlags: 0

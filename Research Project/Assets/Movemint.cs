@@ -4,13 +4,13 @@ public class Movemint : MonoBehaviour
 {
     Animator MovemintAnimator;
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
-    public float secondJumpForce = 3f; // Jump force for the second jump
+    public float groundJumpForce = 5f; // Jump force for the ground jump
+    public float airJumpForce = 3f; // Jump force for the mid-air jump
     public float deceleration = 10f;
     private float previousMoveX;
-    private int jumpCount = 0; // Number of jumps performed
     private bool isJumping = false;
-    private bool canDoubleJump = false; // Tracks if the player can perform a double jump
+    private bool canGroundJump = false;
+    private bool canAirJump = false;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
@@ -63,36 +63,31 @@ public class Movemint : MonoBehaviour
         MovemintAnimator.SetLayerWeight(0, isMoving ? 1f : 0f); // Base layer
         MovemintAnimator.SetLayerWeight(1, isJumping ? 1f : 0f); // Jump layer
 
-        if (isMoving)
-        {
-            Debug.Log("You are moving");
-        }
-        else
-        {
-            Debug.Log("NOT MOVING");
-        }
-
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (!isJumping)
+            if (canGroundJump || canAirJump)
             {
-                Jump(jumpForce);
-                canDoubleJump = true; // Set the flag for double jump
-            }
-            else if (canDoubleJump && jumpCount < 2) // Use canDoubleJump flag
-            {
-                Jump(secondJumpForce);
+                if (!isJumping && canGroundJump)
+                {
+                    Jump(groundJumpForce);
+                    canGroundJump = false; // Disable ground jump after performing it
+                    canAirJump = true; // Enable mid-air jump after performing ground jump
+                }
+                else if (canAirJump)
+                {
+                    Jump(airJumpForce);
+                    canAirJump = false; // Disable mid-air jump after performing it
+                }
             }
         }
     }
 
-    private void Jump(float force)
+    private void Jump(float jumpForce)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f); // Reset vertical velocity
-        rb.AddForce(new Vector2(0f, force), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         isJumping = true;
-        jumpCount++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -100,8 +95,17 @@ public class Movemint : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
-            jumpCount = 0; // Reset the jump count when touching the ground
-            canDoubleJump = false; // Reset the double jump flag
+            canGroundJump = true; // Enable ground jump after touching the ground
+            canAirJump = false; // Disable mid-air jump after touching the ground
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            canGroundJump = false; // Disable ground jump after leaving the ground
+            canAirJump = true; // Enable mid-air jump after leaving the ground
         }
     }
 }
