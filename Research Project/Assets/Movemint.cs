@@ -5,24 +5,25 @@ public class Movemint : MonoBehaviour
     Animator MovemintAnimator;
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    public float secondJumpForce = 3f; // Jump force for the second jump
     public float deceleration = 10f;
     private float previousMoveX;
+    private int jumpCount = 0; // Number of jumps performed
     private bool isJumping = false;
+    private bool canDoubleJump = false; // Tracks if the player can perform a double jump
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        MovemintAnimator = this.GetComponent<Animator>();
+        MovemintAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 
     private void Update()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
 
         // Move horizontally
         if (moveX != 0)
@@ -62,11 +63,10 @@ public class Movemint : MonoBehaviour
         MovemintAnimator.SetLayerWeight(0, isMoving ? 1f : 0f); // Base layer
         MovemintAnimator.SetLayerWeight(1, isJumping ? 1f : 0f); // Jump layer
 
-        if (isMoving == true)
+        if (isMoving)
         {
             Debug.Log("You are moving");
         }
-
         else
         {
             Debug.Log("NOT MOVING");
@@ -75,17 +75,24 @@ public class Movemint : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Jump();
+            if (!isJumping)
+            {
+                Jump(jumpForce);
+                canDoubleJump = true; // Set the flag for double jump
+            }
+            else if (canDoubleJump && jumpCount < 2) // Use canDoubleJump flag
+            {
+                Jump(secondJumpForce);
+            }
         }
     }
 
-    private void Jump()
+    private void Jump(float force)
     {
-        if (!isJumping)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            isJumping = true;
-        }
+        rb.velocity = new Vector2(rb.velocity.x, 0f); // Reset vertical velocity
+        rb.AddForce(new Vector2(0f, force), ForceMode2D.Impulse);
+        isJumping = true;
+        jumpCount++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -93,6 +100,8 @@ public class Movemint : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+            jumpCount = 0; // Reset the jump count when touching the ground
+            canDoubleJump = false; // Reset the double jump flag
         }
     }
 }

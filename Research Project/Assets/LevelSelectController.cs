@@ -48,6 +48,6 @@ public class LevelSelectController : MonoBehaviour
         // You can use PlayerPrefs, a data manager, or any other method to store and retrieve the completion status of levels
         // Return true if the previous level is completed, or false otherwise
         // Example: return PlayerPrefs.GetInt("Level" + (levelIndex - 1) + "Completed", 0) == 1;
-        return false; // Placeholder return statement
+        return PlayerPrefs.GetInt("Level" + (levelIndex - 1) + "Completed", 0) == 1;
     }
 }

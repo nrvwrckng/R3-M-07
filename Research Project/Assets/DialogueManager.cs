@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
-    public GameObject dialoguePanel; // Reference to your dialogue panel GameObject
-    public Text dialogueText; // Reference to the Text component on your dialogue panel
+    public GameObject dialoguePanel;
+    public TMP_Text dialogueText;
 
     private void Awake()
     {
@@ -22,13 +21,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string[] dialogue)
     {
-        // Display the dialogue panel
         dialoguePanel.SetActive(true);
-
-        // Clear any previous text
         dialogueText.text = "";
 
-        // Start showing the dialogue lines
         StartCoroutine(ShowDialogue(dialogue));
     }
 
@@ -36,23 +31,29 @@ public class DialogueManager : MonoBehaviour
     {
         for (int i = 0; i < dialogue.Length; i++)
         {
-            dialogueText.text = dialogue[i];
-
-            // Wait for a brief duration before showing the next line
-            yield return new WaitForSeconds(5f); // Adjust the duration as per your preference
+            dialogueText.text = "";
+            yield return StartCoroutine(AnimateText(dialogue[i]));
+            yield return new WaitForSeconds(2f); // Wait for a brief duration before showing the next line
         }
 
-        // End of dialogue
         EndDialogue();
+    }
+
+    private IEnumerator AnimateText(string dialogue)
+    {
+        dialogueText.text = ""; // Clear the text initially
+
+        for (int i = 0; i < dialogue.Length; i++)
+        {
+            dialogueText.text += dialogue[i]; // Append one character at a time
+
+            yield return new WaitForSeconds(0.1f); // Adjust the delay between characters as per your preference
+        }
     }
 
     public void EndDialogue()
     {
-        // Hide the dialogue panel
         dialoguePanel.SetActive(false);
-
         // Perform any necessary actions after dialogue ends
     }
 }
-
-

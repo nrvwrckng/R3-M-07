@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public GameObject dialogueUI;
+    public GameObject interactionUI;
     public string[] dialogueLines;
+    private bool playerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Collision Detected");
-            DialogueManager.instance.StartDialogue(dialogueLines);
-            // You can add additional actions like disabling player movement during dialogue
-            // or triggering other events based on your game design
+            interactionUI.SetActive(true);
+            playerInRange = true;
         }
     }
 
@@ -21,9 +22,24 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Collision Gone");
-            DialogueManager.instance.EndDialogue();
+            interactionUI.SetActive(false);
+            playerInRange = false;
+            dialogueUI.SetActive(false); // Hide the dialogue UI when leaving the trigger
         }
     }
-}
 
+    private void Update()
+    {
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            StartDialogue();
+            interactionUI.SetActive(false); // Hide the interaction UI when starting dialogue
+        }
+    }
+
+    private void StartDialogue()
+    {
+        dialogueUI.SetActive(true); // Show the dialogue UI
+        DialogueManager.instance.StartDialogue(dialogueLines);
+    }
+}
