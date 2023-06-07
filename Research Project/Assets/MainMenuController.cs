@@ -11,10 +11,10 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void OpenSettings()
+    public void HowToPlay()
     {
         // Load the settings scene or open a settings panel
-        SceneManager.LoadScene("SettingsScene");
+        SceneManager.LoadScene("ControlsScene");
     }
 
     public void ExitGame()

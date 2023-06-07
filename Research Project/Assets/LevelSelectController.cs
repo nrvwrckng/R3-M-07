@@ -26,6 +26,11 @@ public class LevelSelectController : MonoBehaviour
         SceneManager.LoadScene("Level" + levelIndex);
     }
 
+    public void DebugLevel()
+    {
+        SceneManager.LoadScene("DebugLevel");
+    }
+
     private bool CheckIfLevelAccessible(int levelIndex)
     {
         // Check if the previous level is completed (assumed to be stored somewhere)

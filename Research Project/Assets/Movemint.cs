@@ -31,8 +31,17 @@ public class Movemint : MonoBehaviour
             // Flip the sprite if moving in the opposite direction
             spriteRenderer.flipX = moveX < 0;
 
+            // Calculate the target velocity based on the move speed
+            float targetVelocityX = moveX * moveSpeed;
+
+            // Apply less horizontal movement if changing direction mid-air
+            if (!isJumping && Mathf.Sign(moveX) != Mathf.Sign(previousMoveX))
+            {
+                targetVelocityX *= 0.5f;
+            }
+
             // Move horizontally
-            rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(targetVelocityX, rb.velocity.y);
 
             // Check if the movement direction has changed
             if (Mathf.Sign(moveX) != Mathf.Sign(previousMoveX))
@@ -82,6 +91,7 @@ public class Movemint : MonoBehaviour
             }
         }
     }
+
 
     private void Jump(float jumpForce)
     {
