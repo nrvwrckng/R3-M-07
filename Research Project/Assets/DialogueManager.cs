@@ -19,24 +19,38 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private string[] currentDialogue;
+    private int currentLineIndex = 0;
+    private bool isDialogueActive = false;
+    private Coroutine textAnimationCoroutine;
+
     public void StartDialogue(string[] dialogue)
     {
+        if (isDialogueActive)
+            return;
+
+        currentDialogue = dialogue;
         dialoguePanel.SetActive(true);
         dialogueText.text = "";
 
-        StartCoroutine(ShowDialogue(dialogue));
+        currentLineIndex = 0;
+        isDialogueActive = true;
+        DisplayCurrentLine();
     }
 
-    private IEnumerator ShowDialogue(string[] dialogue)
+    private void DisplayCurrentLine()
     {
-        for (int i = 0; i < dialogue.Length; i++)
+        if (currentLineIndex < currentDialogue.Length)
         {
-            dialogueText.text = "";
-            yield return StartCoroutine(AnimateText(dialogue[i]));
-            yield return new WaitForSeconds(2f); // Wait for a brief duration before showing the next line
-        }
+            if (textAnimationCoroutine != null)
+                StopCoroutine(textAnimationCoroutine);
 
-        EndDialogue();
+            textAnimationCoroutine = StartCoroutine(AnimateText(currentDialogue[currentLineIndex]));
+        }
+        else
+        {
+            EndDialogue();
+        }
     }
 
     private IEnumerator AnimateText(string dialogue)
@@ -49,11 +63,22 @@ public class DialogueManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f); // Adjust the delay between characters as per your preference
         }
+
+        textAnimationCoroutine = null;
+    }
+
+    public void DisplayNextLine()
+    {
+        if (!isDialogueActive)
+            return;
+
+        currentLineIndex++;
+        DisplayCurrentLine();
     }
 
     public void EndDialogue()
     {
         dialoguePanel.SetActive(false);
-        // Perform any necessary actions after dialogue ends
+        isDialogueActive = false;
     }
 }

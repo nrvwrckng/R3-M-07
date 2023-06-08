@@ -32,8 +32,15 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            StartDialogue();
-            interactionUI.SetActive(false); // Hide the interaction UI when starting dialogue
+            if (!dialogueUI.activeSelf)
+            {
+                StartDialogue();
+                interactionUI.SetActive(false); // Hide the interaction UI when starting dialogue
+            }
+            else
+            {
+                DialogueManager.instance.DisplayNextLine();
+            }
         }
     }
 

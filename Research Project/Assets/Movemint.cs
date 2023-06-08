@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Movemint : MonoBehaviour
@@ -13,6 +14,7 @@ public class Movemint : MonoBehaviour
     private bool canAirJump = false;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    public bool IsFacingLeft { get; private set; } // Variable to track player facing direction
 
     private void Start()
     {
@@ -30,6 +32,9 @@ public class Movemint : MonoBehaviour
         {
             // Flip the sprite if moving in the opposite direction
             spriteRenderer.flipX = moveX < 0;
+
+            // Update facing direction
+            IsFacingLeft = moveX < 0;
 
             // Calculate the target velocity based on the move speed
             float targetVelocityX = moveX * moveSpeed;
@@ -92,7 +97,6 @@ public class Movemint : MonoBehaviour
         }
     }
 
-
     private void Jump(float jumpForce)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f); // Reset vertical velocity
@@ -118,4 +122,34 @@ public class Movemint : MonoBehaviour
             canAirJump = true; // Enable mid-air jump after leaving the ground
         }
     }
+    /*public void ResetState()
+    {
+        // Reset player state
+        isJumping = false;
+        canGroundJump = false;
+        canAirJump = false;
+        previousMoveX = 0f;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f; // Reset angular velocity (if applicable)
+
+        // Play idle animation
+        MovemintAnimator.Play("Idle");
+
+        // Enable player movement
+        StartCoroutine(EnableMovementDelay());
+    }
+
+    private IEnumerator EnableMovementDelay()
+    {
+        // Delay enabling movement by one frame to ensure proper initialization
+        yield return null;
+
+        // Enable player movement
+        enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }*/
+
+
 }
+

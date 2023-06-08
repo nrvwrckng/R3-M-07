@@ -31,6 +31,23 @@ public class LevelSelectController : MonoBehaviour
         SceneManager.LoadScene("DebugLevel");
     }
 
+    public int GetCurrentLevelIndex()
+    {
+        // Get the current level index by extracting it from the current scene name
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        string levelIndexString = currentSceneName.Substring(currentSceneName.Length - 1); // Assumes level names end with the level index
+        int levelIndex;
+        if (int.TryParse(levelIndexString, out levelIndex))
+        {
+            return levelIndex;
+        }
+        else
+        {
+            Debug.LogWarning("Invalid level index!");
+            return -1;
+        }
+    }
+
     private bool CheckIfLevelAccessible(int levelIndex)
     {
         // Check if the previous level is completed (assumed to be stored somewhere)
