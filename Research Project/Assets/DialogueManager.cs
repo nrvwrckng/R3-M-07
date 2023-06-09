@@ -78,6 +78,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        dialogueText.text = "";
         dialoguePanel.SetActive(false);
         isDialogueActive = false;
     }
